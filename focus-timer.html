@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Focus Timer</title>
+<style>
+body{background:#101827;color:white;font-family:Arial;text-align:center;padding:40px}
+main{max-width:600px;margin:auto;background:#1b2b42;padding:30px;border-radius:18px}
+#clock{font-size:75px;font-weight:bold;margin:30px}
+button{padding:12px 20px;margin:5px;border:0;border-radius:8px;background:#315e9b;color:white;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<h1>⏱ Focus Timer</h1>
+<div id="clock">25:00</div>
+<p id="mode">Focus session</p>
+<button onclick="start()">Start</button>
+<button onclick="pause()">Pause</button>
+<button onclick="reset()">Reset</button>
+<br>
+<button onclick="setTime(25,'Focus')">25 min</button>
+<button onclick="setTime(5,'Short break')">5 min</button>
+<button onclick="setTime(15,'Long break')">15 min</button>
+</main>
+<script>
+let total=1500,left=1500,timer=null;
+
+function draw(){
+ document.getElementById('clock').textContent=
+ String(Math.floor(left/60)).padStart(2,'0')+':'+
+ String(left%60).padStart(2,'0');
+}
+
+function start(){
+ if(timer)return;
+ timer=setInterval(()=>{
+  left--;
+  draw();
+  if(left<=0){
+   pause();
+   alert('Session complete!');
+  }
+ },1000);
+}
+
+function pause(){
+ clearInterval(timer);
+ timer=null;
+}
+
+function reset(){
+ pause();
+ left=total;
+ draw();
+}
+
+function setTime(minutes,name){
+ pause();
+ total=minutes*60;
+ left=total;
+ document.getElementById('mode').textContent=name;
+ draw();
+}
+</script>
+</body>
+</html>
