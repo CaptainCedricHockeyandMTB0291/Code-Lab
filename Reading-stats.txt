@@ -1,0 +1,1 @@
+javascript:(()=>{const t=(document.body.innerText||'').trim();const w=t?t.split(/\s+/).length:0;const mins=Math.max(1,Math.ceil(w/220));alert('Reading stats\n\nWords: '+w.toLocaleString()+'\nEstimated reading time: '+mins+' min')})();
