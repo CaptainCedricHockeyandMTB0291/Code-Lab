@@ -1,0 +1,1 @@
+javascript:(async()=>{const t=document.title+' — '+location.href;try{await navigator.clipboard.writeText(t);alert('Copied page title and link!')}catch(e){prompt('Copy this page title and link:',t)}})();
